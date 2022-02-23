@@ -456,7 +456,7 @@ namespace GMap.NET.MapProviders
 
         protected virtual bool CheckTileImageHttpResponse(WebResponse response)
         {
-            //Debug.WriteLine(response.StatusCode + "/" + response.StatusDescription + "/" + response.ContentType + " -> " + response.ResponseUri);
+            //Console.WriteLine(response.StatusCode + "/" + response.StatusDescription + "/" + response.ContentType + " -> " + response.ResponseUri);
             return response.ContentType.Contains(responseContentType);
         }
 
@@ -537,7 +537,7 @@ namespace GMap.NET.MapProviders
                     {
                         var data = Stuff.CopyStream(responseStream, false);
 
-                        Debug.WriteLine("Response[" + data.Length + " bytes]: " + url);
+                        Console.WriteLine("Response[" + data.Length + " bytes]: " + url);
 
                         if (data.Length > 0)
                         {
@@ -557,7 +557,7 @@ namespace GMap.NET.MapProviders
                 }
                 else
                 {
-                    Debug.WriteLine("CheckTileImageHttpResponse[false]: " + url);
+                    Console.WriteLine("CheckTileImageHttpResponse[false]: " + url);
                 }
 
                 response.Close();

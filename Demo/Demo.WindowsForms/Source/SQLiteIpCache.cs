@@ -4,15 +4,7 @@ namespace Demo.WindowsForms
 #if SQLite
    using System.Collections.Generic;
    using System.Data.Common;
-#if !MONO
    using System.Data.SQLite;
-#else
-   using SQLiteConnection=Mono.Data.Sqlite.SqliteConnection;
-   using SQLiteTransaction=Mono.Data.Sqlite.SqliteTransaction;
-   using SQLiteCommand=Mono.Data.Sqlite.SqliteCommand;
-   using SQLiteDataReader=Mono.Data.Sqlite.SqliteDataReader;
-   using SQLiteParameter=Mono.Data.Sqlite.SqliteParameter;
-#endif
    using System.IO;
    using System.Text;
    using System;
@@ -97,7 +89,7 @@ namespace Demo.WindowsForms
                      catch(Exception exx)
                      {
                         Console.WriteLine("CreateEmptyDB: " + exx.ToString());
-                        Debug.WriteLine("CreateEmptyDB: " + exx.ToString());
+                        Console.WriteLine("CreateEmptyDB: " + exx.ToString());
 
                         tr.Rollback();
                         ret = false;
@@ -112,7 +104,7 @@ namespace Demo.WindowsForms
 #if MONO
             Console.WriteLine("CreateEmptyDB: " + ex.ToString());
 #endif
-            Debug.WriteLine("CreateEmptyDB: " + ex.ToString());
+            Console.WriteLine("CreateEmptyDB: " + ex.ToString());
             ret = false;
          }
          return ret;
@@ -128,7 +120,7 @@ namespace Demo.WindowsForms
 #if !MONO
                cn.ConnectionString = string.Format("Data Source=\"{0}\";", _db);
 #else
-               cn.ConnectionString = string.Format("Version=3,URI=file://{0},FailIfMissing=True,Default Timeout=33", db);
+               cn.ConnectionString = string.Format("Version=3,URI=file://{0},FailIfMissing=True,Default Timeout=33", _db);
 #endif
 
                cn.Open();
@@ -160,7 +152,7 @@ namespace Demo.WindowsForms
                         {
                            Console.WriteLine("PutDataToCache: " + ex.ToString());
 
-                           Debug.WriteLine("PutDataToCache: " + ex.ToString());
+                           Console.WriteLine("PutDataToCache: " + ex.ToString());
 
                            tr.Rollback();
                            ret = false;
@@ -176,7 +168,7 @@ namespace Demo.WindowsForms
 #if MONO
             Console.WriteLine("PutDataToCache: " + ex.ToString());
 #endif
-            Debug.WriteLine("PutDataToCache: " + ex.ToString());
+            Console.WriteLine("PutDataToCache: " + ex.ToString());
             ret = false;
          }
          return ret;
@@ -192,7 +184,7 @@ namespace Demo.WindowsForms
 #if !MONO
                cn.ConnectionString = string.Format("Data Source=\"{0}\";", _db);
 #else
-               cn.ConnectionString = string.Format("Version=3,URI=file://{0},Default Timeout=33", db);
+               cn.ConnectionString = string.Format("Version=3,URI=file://{0},Default Timeout=33", _db);
 #endif
                cn.Open();
                {
@@ -228,7 +220,7 @@ namespace Demo.WindowsForms
 #if MONO
             Console.WriteLine("GetDataFromCache: " + ex.ToString());
 #endif
-            Debug.WriteLine("GetDataFromCache: " + ex.ToString());
+            Console.WriteLine("GetDataFromCache: " + ex.ToString());
             ret = null;
          }
 

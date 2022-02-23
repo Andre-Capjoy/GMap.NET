@@ -6,8 +6,8 @@
     <AssemblyTitle>GMap.NET.Core</AssemblyTitle>
     <RootNamespace>GMap.NET</RootNamespace>
 
-    <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>    
-    <DefineConstants>MONO_disabled;SQLite;MySQL_disabled;PostgreSQL_disabled;$(DefineConstants)</DefineConstants>
+    <TargetFramework>net46</TargetFramework>
+    <DefineConstants>MONO;SQLite;MySQL_disabled;PostgreSQL_disabled;$(DefineConstants)</DefineConstants>
     
     <PackageReleaseNotes>
 - Fixes, improvements and optimization

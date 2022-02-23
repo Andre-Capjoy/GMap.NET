@@ -76,7 +76,7 @@ namespace GMap.NET.Internals
             }
             catch (Exception ex)
             {
-                Trace.WriteLine("SQLitePureImageCache, WindowsIdentity.GetCurrent: " + ex);
+                Console.WriteLine("SQLitePureImageCache, WindowsIdentity.GetCurrent: " + ex);
             }
 
             string path;
@@ -182,7 +182,7 @@ namespace GMap.NET.Internals
                     catch (Exception ex)
                     {
                         CacheLocation = oldCache;
-                        Trace.WriteLine("SQLitePureImageCache, moving data: " + ex.ToString());
+                        Console.WriteLine("SQLitePureImageCache, moving data: " + ex.ToString());
                     }
                 }
                 else
@@ -224,7 +224,7 @@ namespace GMap.NET.Internals
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("SaveContent: " + ex);
+                Console.WriteLine("SaveContent: " + ex);
             }
         }
 
@@ -258,7 +258,7 @@ namespace GMap.NET.Internals
             catch (Exception ex)
             {
                 ret = null;
-                Debug.WriteLine("GetContent: " + ex);
+                Console.WriteLine("GetContent: " + ex);
             }
 
             return ret;

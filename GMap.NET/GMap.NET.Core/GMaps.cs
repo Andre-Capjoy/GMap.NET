@@ -201,7 +201,7 @@ namespace GMap.NET
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("GMaps, try set TileImageProxy failed: " + ex.Message);
+                    Console.WriteLine("GMaps, try set TileImageProxy failed: " + ex.Message);
                 }
             }
         }
@@ -316,7 +316,7 @@ namespace GMap.NET
             {
                 if (!_tileCacheQueue.Contains(task))
                 {
-                    Debug.WriteLine("EnqueueCacheTask: " + task);
+                    Console.WriteLine("EnqueueCacheTask: " + task);
 
                     _tileCacheQueue.Enqueue(task);
 
@@ -352,7 +352,7 @@ namespace GMap.NET
         /// </summary>
         public void CancelTileCaching()
         {
-            Debug.WriteLine("CancelTileCaching...");
+            Console.WriteLine("CancelTileCaching...");
 
             _abortCacheLoop = true;
             lock (_tileCacheQueue)
@@ -402,7 +402,7 @@ namespace GMap.NET
         /// </summary>
         void CacheEngineLoop()
         {
-            Debug.WriteLine("CacheEngine: start");
+            Console.WriteLine("CacheEngine: start");
             int left;
 
             if (OnTileCacheStart != null)
@@ -449,7 +449,7 @@ namespace GMap.NET
                         // check if stream wasn't disposed somehow
                         if (task.Value.Img != null)
                         {
-                            Debug.WriteLine("CacheEngine[" + left + "]: storing tile " + task.Value + ", " +
+                            Console.WriteLine("CacheEngine[" + left + "]: storing tile " + task.Value + ", " +
                                             task.Value.Img.Length / 1024 + "kB...");
 
                             if ((task.Value.CacheType & CacheUsage.First) == CacheUsage.First && PrimaryCache != null)
@@ -494,7 +494,7 @@ namespace GMap.NET
                         }
                         else
                         {
-                            Debug.WriteLine("CacheEngineLoop: skip, tile disposed to early -> " + task.Value);
+                            Console.WriteLine("CacheEngineLoop: skip, tile disposed to early -> " + task.Value);
                         }
 
                         #endregion
@@ -523,11 +523,11 @@ namespace GMap.NET
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("CacheEngineLoop: " + ex.ToString());
+                    Console.WriteLine("CacheEngineLoop: " + ex.ToString());
                 }
             }
 
-            Debug.WriteLine("CacheEngine: stop");
+            Console.WriteLine("CacheEngine: stop");
 
             if (!startEvent)
             {
@@ -681,7 +681,7 @@ namespace GMap.NET
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("ExportGPX: " + ex.ToString());
+                Console.WriteLine("ExportGPX: " + ex.ToString());
                 return false;
             }
 
@@ -703,8 +703,8 @@ namespace GMap.NET
             PureImage ret = null;
             result = null;
 
-            try
-            {
+            /*try
+            {*/
                 var rtile = new RawTile(provider.DbId, pos, zoom);
 
                 // let't check memory first
@@ -719,7 +719,7 @@ namespace GMap.NET
                             if (ret == null)
                             {
 #if DEBUG
-                                Debug.WriteLine("Image disposed in MemoryCache o.O, should never happen ;} " +
+                                Console.WriteLine("Image disposed in MemoryCache o.O, should never happen ;} " +
                                                 new RawTile(provider.DbId, pos, zoom));
                                 if (Debugger.IsAttached)
                                 {
@@ -801,13 +801,13 @@ namespace GMap.NET
                         result = _noDataException;
                     }
                 }
-            }
+            /*}
             catch (Exception ex)
             {
                 result = ex;
                 ret = null;
-                Debug.WriteLine("GetImageFrom: " + ex.ToString());
-            }
+                Console.WriteLine("GetImageFrom: " + ex.ToString());
+            }*/
 
             return ret;
         }

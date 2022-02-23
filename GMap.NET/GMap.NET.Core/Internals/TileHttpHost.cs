@@ -65,7 +65,7 @@ namespace GMap.NET.Internals
 
             var t = new Thread(() =>
             {
-                Debug.WriteLine("TileHttpHost: " + _server.LocalEndpoint);
+                Console.WriteLine("TileHttpHost: " + _server.LocalEndpoint);
 
                 while (_listen)
                 {
@@ -82,11 +82,11 @@ namespace GMap.NET.Internals
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine("TileHttpHost: " + ex);
+                        Console.WriteLine("TileHttpHost: " + ex);
                     }
                 }
 
-                Debug.WriteLine("TileHttpHost: stoped");
+                Console.WriteLine("TileHttpHost: stoped");
             });
 
             t.Name = "TileHost";
@@ -108,7 +108,7 @@ namespace GMap.NET.Internals
 
                             if (!string.IsNullOrEmpty(request) && request.StartsWith("GET"))
                             {
-                                //Debug.WriteLine("TileHttpHost: " + request);
+                                //Console.WriteLine("TileHttpHost: " + request);
 
                                 // http://localhost:88/88888/5/15/11
                                 // GET /8888888888/5/15/11 HTTP/1.1
@@ -149,10 +149,10 @@ namespace GMap.NET.Internals
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("TileHttpHost, ProcessRequest: " + ex);
+                Console.WriteLine("TileHttpHost, ProcessRequest: " + ex);
             }
 
-            //Debug.WriteLine("disconnected");
+            //Console.WriteLine("disconnected");
         }
     }
 }

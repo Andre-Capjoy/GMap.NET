@@ -111,7 +111,7 @@ namespace Demo.WindowsForms
 
                 var reply = pinger.Send(hostNameOrAddress, timeout, DataBuffer, pingerOptions);
 
-                //Debug.WriteLine("GetTraceRoute[" + hostNameOrAddress + "]: " + reply.RoundtripTime + "ms " + reply.Address + " -> " + reply.Status);
+                //Console.WriteLine("GetTraceRoute[" + hostNameOrAddress + "]: " + reply.RoundtripTime + "ms " + reply.Address + " -> " + reply.Status);
 
                 if (reply.Status == IPStatus.Success)
                 {
@@ -127,7 +127,7 @@ namespace Demo.WindowsForms
                 }
                 else
                 {
-                    Debug.WriteLine("GetTraceRoute: " + hostNameOrAddress + " - " + reply.Status);
+                    Console.WriteLine("GetTraceRoute: " + hostNameOrAddress + " - " + reply.Status);
                 }
             }
 

@@ -48,6 +48,7 @@ namespace Demo.WindowsForms
         {
             InitializeComponent();
 
+
             if (!GMapControl.IsDesignerHosted)
             {
                 // add your custom map db provider
@@ -66,14 +67,14 @@ namespace Demo.WindowsForms
                 // set cache mode only if no internet available
                 if (!Stuff.PingNetwork("pingtest.com"))
                 {
-                    MainMap.Manager.Mode = AccessMode.CacheOnly;
+                    MainMap.Manager.Mode = AccessMode.ServerAndCache;
                     MessageBox.Show("No internet connection available, going to CacheOnly mode.", "GMap.NET - Demo.WindowsForms", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 //----------------------------------------
                 // Config Map at Startup
                 //----------------------------------------
-                MainMap.MapProvider = GMapProviders.GoogleMap;
+                MainMap.MapProvider = GMapProviders.OpenStreetMap;
 
                 // Custom Map Provider
                 //MainMap.MapProvider = GMapProviders.CustomMap;
@@ -214,7 +215,7 @@ namespace Demo.WindowsForms
                 }
                 else
                 {
-                    Debug.WriteLine("GeoCoderStatusCode = " + status.ToString()); // REQUEST_DENIED I assume
+                    Console.WriteLine("GeoCoderStatusCode = " + status.ToString()); // REQUEST_DENIED I assume
                 }
 
                 if (Objects.Markers.Count > 0)
@@ -227,17 +228,17 @@ namespace Demo.WindowsForms
                 try
                 {
                     var overlay = DeepClone(Objects);
-                    Debug.WriteLine("ISerializable status for markers: OK");
+                    Console.WriteLine("ISerializable status for markers: OK");
 
                     var overlay2 = DeepClone(Polygons);
-                    Debug.WriteLine("ISerializable status for polygons: OK");
+                    Console.WriteLine("ISerializable status for polygons: OK");
 
                     var overlay3 = DeepClone(Routes);
-                    Debug.WriteLine("ISerializable status for routes: OK");
+                    Console.WriteLine("ISerializable status for routes: OK");
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("ISerializable failure: " + ex.Message);
+                    Console.WriteLine("ISerializable failure: " + ex.Message);
 #if DEBUG
                     if (Debugger.IsAttached)
                     {
@@ -462,7 +463,7 @@ namespace Demo.WindowsForms
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("transport_DoWork: " + ex.ToString());
+                    Console.WriteLine("transport_DoWork: " + ex.ToString());
                 }
                 Thread.Sleep(2 * 1000);
             }
@@ -590,7 +591,7 @@ namespace Demo.WindowsForms
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("TryExtractLeafletjs: " + ex);
+                Console.WriteLine("TryExtractLeafletjs: " + ex);
                 return false;
             }
             return true;
@@ -603,7 +604,7 @@ namespace Demo.WindowsForms
 
         void OnTileCacheComplete()
         {
-            Debug.WriteLine("OnTileCacheComplete");
+            Console.WriteLine("OnTileCacheComplete");
             long size = 0;
             int db = 0;
             try
@@ -644,7 +645,7 @@ namespace Demo.WindowsForms
 
         void OnTileCacheStart()
         {
-            Debug.WriteLine("OnTileCacheStart");
+            Console.WriteLine("OnTileCacheStart");
 
             if (!IsDisposed)
             {
@@ -687,7 +688,7 @@ namespace Demo.WindowsForms
                 var rc = item as GMapMarkerRect;
                 rc.Pen.Color = Color.Blue;
 
-                Debug.WriteLine("OnMarkerLeave: " + item.Position);
+                Console.WriteLine("OnMarkerLeave: " + item.Position);
             }
         }
 
@@ -700,7 +701,7 @@ namespace Demo.WindowsForms
 
                 _curentRectMarker = rc;
             }
-            Debug.WriteLine("OnMarkerEnter: " + item.Position);
+            Console.WriteLine("OnMarkerEnter: " + item.Position);
         }
 
         GMapPolygon _currentPolygon;
@@ -708,14 +709,14 @@ namespace Demo.WindowsForms
         {
             _currentPolygon = null;
             item.Stroke.Color = Color.MidnightBlue;
-            Debug.WriteLine("OnPolygonLeave: " + item.Name);
+            Console.WriteLine("OnPolygonLeave: " + item.Name);
         }
 
         void MainMap_OnPolygonEnter(GMapPolygon item)
         {
             _currentPolygon = item;
             item.Stroke.Color = Color.Red;
-            Debug.WriteLine("OnPolygonEnter: " + item.Name);
+            Console.WriteLine("OnPolygonEnter: " + item.Name);
         }
 
         GMapRoute _currentRoute;
@@ -723,14 +724,14 @@ namespace Demo.WindowsForms
         {
             _currentRoute = null;
             item.Stroke.Color = Color.MidnightBlue;
-            Debug.WriteLine("OnRouteLeave: " + item.Name);
+            Console.WriteLine("OnRouteLeave: " + item.Name);
         }
 
         void MainMap_OnRouteEnter(GMapRoute item)
         {
             _currentRoute = item;
             item.Stroke.Color = Color.Red;
-            Debug.WriteLine("OnRouteEnter: " + item.Name);
+            Console.WriteLine("OnRouteEnter: " + item.Name);
         }
 
         void MainMap_OnMapTypeChanged(GMapProvider type)
@@ -770,7 +771,7 @@ namespace Demo.WindowsForms
                     var px = MainMap.MapProvider.Projection.FromLatLngToPixel(_currentMarker.Position.Lat, _currentMarker.Position.Lng, (int)MainMap.Zoom);
                     var tile = MainMap.MapProvider.Projection.FromPixelToTileXY(px);
 
-                    Debug.WriteLine("MouseDown: geo: " + _currentMarker.Position + " | px: " + px + " | tile: " + tile);
+                    Console.WriteLine("MouseDown: geo: " + _currentMarker.Position + " | px: " + px + " | tile: " + tile);
                 }
             }
         }
@@ -1436,7 +1437,7 @@ namespace Demo.WindowsForms
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine("GPX import: " + ex.ToString());
+                        Console.WriteLine("GPX import: " + ex.ToString());
                         MessageBox.Show("Error importing gpx: " + ex.Message, "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }

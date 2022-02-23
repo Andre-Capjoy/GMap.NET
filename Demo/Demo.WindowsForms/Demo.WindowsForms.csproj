@@ -4,12 +4,12 @@
         <AssemblyTitle>Demo.WindowsForms</AssemblyTitle>
         <Description>Demo for GMap.NET.WindowsForms</Description>
         <Product>Demo.WindowsForms</Product>
-        <TargetFrameworks>net46;net5.0-windows</TargetFrameworks>
+      <TargetFramework>net46</TargetFramework>
         <UseWindowsForms>true</UseWindowsForms>
         <OutputType>WinExe</OutputType>
         <SignAssembly>True</SignAssembly>
         <AssemblyOriginatorKeyFile>../../sn.snk</AssemblyOriginatorKeyFile>
-        <DefineConstants>MONO_disabled;SQLite;$(DefineConstants)</DefineConstants>
+        <DefineConstants>MONO;SQLite;$(DefineConstants)</DefineConstants>
         <Prefer32Bit>false</Prefer32Bit>
         <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     </PropertyGroup>

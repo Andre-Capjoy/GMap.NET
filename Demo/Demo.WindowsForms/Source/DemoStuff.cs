@@ -15,11 +15,6 @@ using System.Net.NetworkInformation;
 
 #endif
 #else
-   using SQLiteConnection = Mono.Data.Sqlite.SqliteConnection;
-   using SQLiteTransaction = Mono.Data.Sqlite.SqliteTransaction;
-   using SQLiteCommand = Mono.Data.Sqlite.SqliteCommand;
-   using SQLiteDataReader = Mono.Data.Sqlite.SqliteDataReader;
-   using SQLiteParameter = Mono.Data.Sqlite.SqliteParameter;
 #endif
 
 namespace Demo.WindowsForms
@@ -322,7 +317,7 @@ namespace Demo.WindowsForms
 
             //      foreach(XmlElement elem in dev.ChildNodes)
             //      {
-            //         // Debug.WriteLine(d.Id + "->" + elem.Name + ": " + elem.InnerText);
+            //         // Console.WriteLine(d.Id + "->" + elem.Name + ": " + elem.InnerText);
 
             //         switch(elem.Name)
             //         {
@@ -405,7 +400,7 @@ namespace Demo.WindowsForms
             // get track for one object
             //var tm = (long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalMilliseconds;
             //var r = GetContentUsingHttp("http://www.flightradar24.com/FlightDataService.php?callsign=WZZ1MF&hex=47340F&date=" + tm, p1, 6, id);
-            //Debug.WriteLine(r);
+            //Console.WriteLine(r);
 
             //if(!string.IsNullOrEmpty(sessionId))
             {
@@ -426,7 +421,7 @@ namespace Demo.WindowsForms
                     {
                         string d = it.TrimEnd(']').Replace(":[", ",").Replace("\"", string.Empty);
 
-                        //Debug.WriteLine(++i + " -> " + d);
+                        //Console.WriteLine(++i + " -> " + d);
 
                         // BAW576":["400803",48.9923,1.8083,"144","36950","462","0512","LFPO","A319","G-EUPC"
                         var par = d.Split(',');
@@ -451,12 +446,12 @@ namespace Demo.WindowsForms
 
                             ret.Add(fd);
 
-                            //Debug.WriteLine("name: " + name);
-                            //Debug.WriteLine("hex: " + hex);
-                            //Debug.WriteLine("point: " + fd.point);
-                            //Debug.WriteLine("bearing: " + bearing);
-                            //Debug.WriteLine("altitude: " + altitude);
-                            //Debug.WriteLine("speed: " + speed);
+                            //Console.WriteLine("name: " + name);
+                            //Console.WriteLine("hex: " + hex);
+                            //Console.WriteLine("point: " + fd.point);
+                            //Console.WriteLine("bearing: " + bearing);
+                            //Console.WriteLine("altitude: " + altitude);
+                            //Console.WriteLine("speed: " + speed);
                         }
                         else
                         {
@@ -468,7 +463,7 @@ namespace Demo.WindowsForms
 #endif
                         }
 
-                        //Debug.WriteLine("--------------");
+                        //Console.WriteLine("--------------");
                     }
                 }
             }
@@ -493,7 +488,7 @@ namespace Demo.WindowsForms
                 //if(string.IsNullOrEmpty(sid))
                 //{
                 //   var c = response.Headers["Set-Cookie"];
-                //   //Debug.WriteLine(c);
+                //   //Console.WriteLine(c);
                 //   if(c.Contains("PHPSESSID"))
                 //   {
                 //      c = c.Split('=')[1].Split(';')[0];

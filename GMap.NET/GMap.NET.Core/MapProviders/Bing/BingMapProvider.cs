@@ -229,11 +229,11 @@ namespace GMap.NET.MapProviders
 
                             SessionId = keyResponse.Split(',')[0].Split(':')[1].Replace("\"", string.Empty)
                                 .Replace(" ", string.Empty);
-                            Debug.WriteLine("GMapProviders.BingMap.SessionId: " + SessionId);
+                            Console.WriteLine("GMapProviders.BingMap.SessionId: " + SessionId);
                         }
                         else
                         {
-                            Debug.WriteLine("BingLoggingServiceV1: " + keyResponse);
+                            Console.WriteLine("BingLoggingServiceV1: " + keyResponse);
                         }
                     }
 
@@ -284,7 +284,7 @@ namespace GMap.NET.MapProviders
                                         GMapProviders.BingHybridMap.Version = ver;
                                         GMapProviders.BingOSMap.Version = ver;
 #if DEBUG
-                                        Debug.WriteLine("GMapProviders.BingMap.Version: " + ver + ", old: " + old +
+                                        Console.WriteLine("GMapProviders.BingMap.Version: " + ver + ", old: " + old +
                                                         ", consider updating source");
                                         if (Debugger.IsAttached)
                                         {
@@ -294,7 +294,7 @@ namespace GMap.NET.MapProviders
                                     }
                                     else
                                     {
-                                        Debug.WriteLine("GMapProviders.BingMap.Version: " + ver + ", OK");
+                                        Console.WriteLine("GMapProviders.BingMap.Version: " + ver + ", OK");
                                     }
                                 }
                             }
@@ -309,7 +309,7 @@ namespace GMap.NET.MapProviders
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("TryCorrectBingVersions failed: " + ex);
+                    Console.WriteLine("TryCorrectBingVersions failed: " + ex);
                 }
             }
         }
@@ -392,7 +392,7 @@ namespace GMap.NET.MapProviders
                                         baseTileUrl += "&key=" + SessionId;
                                     }
 
-                                    Debug.WriteLine("GetTileUrl, UrlFormat[" + imageryType + "]: " + baseTileUrl);
+                                    Console.WriteLine("GetTileUrl, UrlFormat[" + imageryType + "]: " + baseTileUrl);
 
                                     ret = baseTileUrl;
                                     break;
@@ -403,7 +403,7 @@ namespace GMap.NET.MapProviders
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("GetTileUrl: Error getting Bing Maps tile URL - " + ex);
+                    Console.WriteLine("GetTileUrl: Error getting Bing Maps tile URL - " + ex);
                 }
             }
 
@@ -585,7 +585,7 @@ namespace GMap.NET.MapProviders
             catch (Exception ex)
             {
                 points = null;
-                Debug.WriteLine("GetRoutePoints: " + ex);
+                Console.WriteLine("GetRoutePoints: " + ex);
             }
 
             return points;
@@ -772,7 +772,7 @@ namespace GMap.NET.MapProviders
             catch (Exception ex)
             {
                 status = GeoCoderStatusCode.EXCEPTION_IN_CODE;
-                Debug.WriteLine("GetLatLngFromGeocoderUrl: " + ex);
+                Console.WriteLine("GetLatLngFromGeocoderUrl: " + ex);
             }
 
             return status;

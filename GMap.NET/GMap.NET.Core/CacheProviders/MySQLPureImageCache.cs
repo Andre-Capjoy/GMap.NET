@@ -120,7 +120,7 @@
                catch(Exception ex)
                {
                   this.initialized = false;
-                  Debug.WriteLine(ex.Message);
+                  Console.WriteLine(ex.Message);
                }
                #endregion
             }
@@ -193,7 +193,7 @@
                }
                catch(Exception ex)
                {
-                  Debug.WriteLine(ex.ToString());
+                  Console.WriteLine(ex.ToString());
                   ret = false;
                   Dispose();
                }
@@ -242,7 +242,7 @@
                }
                catch(Exception ex)
                {
-                  Debug.WriteLine(ex.ToString());
+                  Console.WriteLine(ex.ToString());
                   ret = null;
                   Dispose();
                }

@@ -145,9 +145,9 @@ namespace GMap.NET.MapProviders
                                 GMapProviders.GoogleHybridMap.Version = verh;
                                 GMapProviders.GoogleChinaHybridMap.Version = verh;
 #if DEBUG
-                                Debug.WriteLine("GMapProviders.GoogleMap.Version: " + ver + ", " +
+                                Console.WriteLine("GMapProviders.GoogleMap.Version: " + ver + ", " +
                                                 (ver == old ? "OK" : "old: " + old + ", consider updating source"));
-                                Debug.WriteLine("GMapProviders.GoogleHybridMap.Version: " + verh + ", " +
+                                Console.WriteLine("GMapProviders.GoogleHybridMap.Version: " + verh + ", " +
                                                 (verh == oldh ? "OK" : "old: " + oldh + ", consider updating source"));
 
                                 if (Debugger.IsAttached && ver != old)
@@ -176,7 +176,7 @@ namespace GMap.NET.MapProviders
                                 GMapProviders.GoogleKoreaSatelliteMap.Version = ver;
                                 GMapProviders.GoogleChinaSatelliteMap.Version = "s@" + ver;
 #if DEBUG
-                                Debug.WriteLine("GMapProviders.GoogleSatelliteMap.Version: " + ver + ", " +
+                                Console.WriteLine("GMapProviders.GoogleSatelliteMap.Version: " + ver + ", " +
                                                 (ver == old ? "OK" : "old: " + old + ", consider updating source"));
                                 if (Debugger.IsAttached && ver != old)
                                 {
@@ -203,7 +203,7 @@ namespace GMap.NET.MapProviders
                                 GMapProviders.GoogleTerrainMap.Version = ver;
                                 GMapProviders.GoogleChinaTerrainMap.Version = ver;
 #if DEBUG
-                                Debug.WriteLine("GMapProviders.GoogleTerrainMap.Version: " + ver + ", " +
+                                Console.WriteLine("GMapProviders.GoogleTerrainMap.Version: " + ver + ", " +
                                                 (ver == old ? "OK" : "old: " + old + ", consider updating source"));
 
                                 if (Debugger.IsAttached && ver != old)
@@ -221,7 +221,7 @@ namespace GMap.NET.MapProviders
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("TryCorrectGoogleVersions failed: " + ex.ToString());
+                    Console.WriteLine("TryCorrectGoogleVersions failed: " + ex.ToString());
                 }
             }
         }
@@ -363,7 +363,7 @@ namespace GMap.NET.MapProviders
             catch (Exception ex)
             {
                 ret = null;
-                Debug.WriteLine("GetRoutePoints: " + ex);
+                Console.WriteLine("GetRoutePoints: " + ex);
             }
 
             return ret;
@@ -514,7 +514,7 @@ namespace GMap.NET.MapProviders
                         }
                         else
                         {
-                            Debug.WriteLine("GetLatLngFromGeocoderUrl: " + geoResult.status);
+                            Console.WriteLine("GetLatLngFromGeocoderUrl: " + geoResult.status);
                         }
                     }
                 }
@@ -522,7 +522,7 @@ namespace GMap.NET.MapProviders
             catch (Exception ex)
             {
                 status = GeoCoderStatusCode.EXCEPTION_IN_CODE;
-                Debug.WriteLine("GetLatLngFromGeocoderUrl: " + ex);
+                Console.WriteLine("GetLatLngFromGeocoderUrl: " + ex);
             }
 
             return status;
@@ -580,18 +580,18 @@ namespace GMap.NET.MapProviders
 
                             if (geoResult.results != null && geoResult.results.Count > 0)
                             {
-                                Debug.WriteLine("---------------------");
+                                Console.WriteLine("---------------------");
 
                                 for (int i = 0; i < geoResult.results.Count; i++)
                                 {
                                     var ret = new Placemark(geoResult.results[i].formatted_address);
 
-                                    Debug.WriteLine("formatted_address: [" + geoResult.results[i].formatted_address +
+                                    Console.WriteLine("formatted_address: [" + geoResult.results[i].formatted_address +
                                                     "]");
 
                                     if (geoResult.results[i].types != null)
                                     {
-                                        Debug.WriteLine("type: " + geoResult.results[i].types);
+                                        Console.WriteLine("type: " + geoResult.results[i].types);
                                     }
 
                                     if (geoResult.results[i].address_components != null &&
@@ -605,7 +605,7 @@ namespace GMap.NET.MapProviders
                                                 Debug.Write(
                                                     "Type: [" + geoResult.results[i].address_components[j].types[0] +
                                                     "], ");
-                                                Debug.WriteLine(
+                                                Console.WriteLine(
                                                     "long_name: [" +
                                                     geoResult.results[i].address_components[j].long_name + "]");
 
@@ -694,7 +694,7 @@ namespace GMap.NET.MapProviders
                     }
                     else
                     {
-                        Debug.WriteLine("GetPlacemarkFromReverseGeocoderUrl: " + geoResult.status);
+                        Console.WriteLine("GetPlacemarkFromReverseGeocoderUrl: " + geoResult.status);
                     }
                 }
             }
@@ -702,7 +702,7 @@ namespace GMap.NET.MapProviders
             {
                 status = GeoCoderStatusCode.EXCEPTION_IN_CODE;
                 placemarkList = null;
-                Debug.WriteLine("GetPlacemarkReverseGeocoderUrl: " + ex.ToString());
+                Console.WriteLine("GetPlacemarkReverseGeocoderUrl: " + ex.ToString());
             }
 
             return status;
@@ -973,12 +973,12 @@ namespace GMap.NET.MapProviders
                             if (directionResult.routes != null && directionResult.routes.Count > 0)
                             {
                                 direction.Summary = directionResult.routes[0].summary;
-                                Debug.WriteLine("summary: " + direction.Summary);
+                                Console.WriteLine("summary: " + direction.Summary);
 
                                 if (directionResult.routes[0].copyrights != null)
                                 {
                                     direction.Copyrights = directionResult.routes[0].copyrights;
-                                    Debug.WriteLine("copyrights: " + direction.Copyrights);
+                                    Console.WriteLine("copyrights: " + direction.Copyrights);
                                 }
 
                                 if (directionResult.routes[0].overview_polyline != null &&
@@ -992,19 +992,19 @@ namespace GMap.NET.MapProviders
                                 if (directionResult.routes[0].legs != null && directionResult.routes[0].legs.Count > 0)
                                 {
                                     direction.Duration = directionResult.routes[0].legs[0].duration.text;
-                                    Debug.WriteLine("duration: " + direction.Duration);
+                                    Console.WriteLine("duration: " + direction.Duration);
 
                                     direction.DurationValue = (uint)directionResult.routes[0].legs[0].duration.value;
-                                    Debug.WriteLine("value: " + direction.DurationValue);
+                                    Console.WriteLine("value: " + direction.DurationValue);
 
                                     if (directionResult.routes[0].legs[0].distance != null)
                                     {
                                         direction.Distance = directionResult.routes[0].legs[0].distance.text;
-                                        Debug.WriteLine("distance: " + direction.Distance);
+                                        Console.WriteLine("distance: " + direction.Distance);
 
                                         direction.DistanceValue =
                                             (uint)directionResult.routes[0].legs[0].distance.value;
-                                        Debug.WriteLine("value: " + direction.DistanceValue);
+                                        Console.WriteLine("value: " + direction.DistanceValue);
                                     }
 
                                     if (directionResult.routes[0].legs[0].start_location != null)
@@ -1024,13 +1024,13 @@ namespace GMap.NET.MapProviders
                                     if (directionResult.routes[0].legs[0].start_address != null)
                                     {
                                         direction.StartAddress = directionResult.routes[0].legs[0].start_address;
-                                        Debug.WriteLine("start_address: " + direction.StartAddress);
+                                        Console.WriteLine("start_address: " + direction.StartAddress);
                                     }
 
                                     if (directionResult.routes[0].legs[0].end_address != null)
                                     {
                                         direction.EndAddress = directionResult.routes[0].legs[0].end_address;
-                                        Debug.WriteLine("end_address: " + direction.EndAddress);
+                                        Console.WriteLine("end_address: " + direction.EndAddress);
                                     }
 
                                     direction.Steps = new List<GDirectionStep>();
@@ -1038,20 +1038,20 @@ namespace GMap.NET.MapProviders
                                     for (int i = 0; i < directionResult.routes[0].legs[0].steps.Count; i++)
                                     {
                                         var step = new GDirectionStep();
-                                        Debug.WriteLine("----------------------");
+                                        Console.WriteLine("----------------------");
 
                                         step.TravelMode = directionResult.routes[0].legs[0].steps[i].travel_mode;
-                                        Debug.WriteLine("travel_mode: " + step.TravelMode);
+                                        Console.WriteLine("travel_mode: " + step.TravelMode);
 
                                         step.Duration = directionResult.routes[0].legs[0].steps[i].duration.text;
-                                        Debug.WriteLine("duration: " + step.Duration);
+                                        Console.WriteLine("duration: " + step.Duration);
 
                                         step.Distance = directionResult.routes[0].legs[0].steps[i].distance.text;
-                                        Debug.WriteLine("distance: " + step.Distance);
+                                        Console.WriteLine("distance: " + step.Distance);
 
                                         step.HtmlInstructions =
                                             directionResult.routes[0].legs[0].steps[i].html_instructions;
-                                        Debug.WriteLine("html_instructions: " + step.HtmlInstructions);
+                                        Console.WriteLine("html_instructions: " + step.HtmlInstructions);
 
                                         if (directionResult.routes[0].legs[0].steps[i].start_location != null)
                                         {
@@ -1089,7 +1089,7 @@ namespace GMap.NET.MapProviders
             {
                 direction = null;
                 ret = DirectionsStatusCode.EXCEPTION_IN_CODE;
-                Debug.WriteLine("GetDirectionsUrl: " + ex);
+                Console.WriteLine("GetDirectionsUrl: " + ex);
             }
 
             return ret;
@@ -1210,7 +1210,7 @@ namespace GMap.NET.MapProviders
             catch (Exception ex)
             {
                 ret = null;
-                Debug.WriteLine("GetRoutePoints: " + ex);
+                Console.WriteLine("GetRoutePoints: " + ex);
             }
 
             return ret;

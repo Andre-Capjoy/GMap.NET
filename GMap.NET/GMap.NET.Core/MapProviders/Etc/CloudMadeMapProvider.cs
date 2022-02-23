@@ -223,7 +223,7 @@ namespace GMap.NET.MapProviders
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("GetRoutePoints: " + ex);
+                Console.WriteLine("GetRoutePoints: " + ex);
             }
 
             return points;
@@ -536,7 +536,7 @@ namespace GMap.NET.MapProviders
             {
                 ret = DirectionsStatusCode.EXCEPTION_IN_CODE;
                 direction = null;
-                Debug.WriteLine("GetDirectionsUrl: " + ex);
+                Console.WriteLine("GetDirectionsUrl: " + ex);
             }
 
             return ret;

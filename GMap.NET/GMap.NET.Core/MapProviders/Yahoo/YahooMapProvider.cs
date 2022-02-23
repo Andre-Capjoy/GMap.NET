@@ -243,7 +243,7 @@ namespace GMap.NET.MapProviders
             catch (Exception ex)
             {
                 status = GeoCoderStatusCode.EXCEPTION_IN_CODE;
-                Debug.WriteLine("GetLatLngFromGeocoderUrl: " + ex);
+                Console.WriteLine("GetLatLngFromGeocoderUrl: " + ex);
             }
 
             return status;
@@ -368,7 +368,7 @@ namespace GMap.NET.MapProviders
             catch (Exception ex)
             {
                 status = GeoCoderStatusCode.EXCEPTION_IN_CODE;
-                Debug.WriteLine("GetPlacemarkFromReverseGeocoderUrl: " + ex);
+                Console.WriteLine("GetPlacemarkFromReverseGeocoderUrl: " + ex);
             }
 
             return status;

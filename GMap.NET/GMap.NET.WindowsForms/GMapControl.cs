@@ -1350,7 +1350,7 @@ namespace GMap.NET.WindowsForms
         {
             if (Core.UpdatingBounds || MapProvider == EmptyProvider.Instance || MapProvider == null)
             {
-                Debug.WriteLine("Core.updatingBounds");
+                Console.WriteLine("Core.updatingBounds");
                 return;
             }
 
@@ -1825,13 +1825,13 @@ namespace GMap.NET.WindowsForms
             base.OnSizeChanged(e);
             if (Width == 0 || Height == 0)
             {
-                Debug.WriteLine("minimized");
+                Console.WriteLine("minimized");
                 return;
             }
 
             if (Width == Core.Width && Height == Core.Height)
             {
-                Debug.WriteLine("maximized");
+                Console.WriteLine("maximized");
                 return;
             }
 
@@ -1924,7 +1924,7 @@ namespace GMap.NET.WindowsForms
                 if (_isDragging)
                 {
                     _isDragging = false;
-                    Debug.WriteLine("IsDragging = " + _isDragging);
+                    Console.WriteLine("IsDragging = " + _isDragging);
                     Cursor = _cursorBefore;
                     _cursorBefore = null;
                 }
@@ -2199,7 +2199,7 @@ namespace GMap.NET.WindowsForms
                 if (!_isDragging)
                 {
                     _isDragging = true;
-                    Debug.WriteLine("IsDragging = " + _isDragging);
+                    Console.WriteLine("IsDragging = " + _isDragging);
 
                     _cursorBefore = Cursor;
                     Cursor = Cursors.SizeAll;
@@ -2741,7 +2741,7 @@ namespace GMap.NET.WindowsForms
             {
                 if (_zoomReal != value)
                 {
-                    Debug.WriteLine("ZoomPropertyChanged: " + _zoomReal + " -> " + value);
+                    Console.WriteLine("ZoomPropertyChanged: " + _zoomReal + " -> " + value);
 
                     if (value > MaxZoom)
                     {
@@ -2978,7 +2978,7 @@ namespace GMap.NET.WindowsForms
             {
                 if (Core.Provider == null || !Core.Provider.Equals(value))
                 {
-                    Debug.WriteLine("MapType: " + Core.Provider.Name + " -> " + value.Name);
+                    Console.WriteLine("MapType: " + Core.Provider.Name + " -> " + value.Name);
 
                     var viewarea = SelectedArea;
 

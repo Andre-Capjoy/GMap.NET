@@ -22,7 +22,7 @@ namespace GMap.NET
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Extensions.GetValue: " + ex.Message);
+                Console.WriteLine("Extensions.GetValue: " + ex.Message);
                 return null;
             }
         }
@@ -62,7 +62,7 @@ namespace GMap.NET
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Extensions.GetStruct: " + ex.Message);
+                Console.WriteLine("Extensions.GetStruct: " + ex.Message);
                 return defaultValue;
             }
         }
@@ -84,7 +84,7 @@ namespace GMap.NET
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Extensions.GetStruct: " + ex.Message);
+                Console.WriteLine("Extensions.GetStruct: " + ex.Message);
                 return defaultValue;
             }
         }
